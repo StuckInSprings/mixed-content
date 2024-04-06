@@ -1,4 +1,3 @@
-import { unstable_cache } from 'next/cache'
 import { Suspense } from 'react'
 
 const fetchUser = async () => {
