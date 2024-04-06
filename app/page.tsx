@@ -11,14 +11,13 @@ const fetchUser = async () => {
 export default async function Home() {
   const randomResult = await fetchUser()
 
-  console.log(randomResult)
-
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+    <main className='flex min-h-screen flex-col items-center p-24'>
+      <h1 className='text-4xl font-bold'>Static User</h1>
+      <p className='text-lg'>{randomResult[0].name.first}</p>
+      <h1 className='text-4xl font-bold'>Random User</h1>
       <Suspense fallback={<div>Loading...</div>}>
-        {/* <PokeCards pokemon={pokemon} /> */}
-
-        <span>{randomResult[0].name.first}</span>
+        <p className='text-lg'>{randomResult[0].name.first}</p>
       </Suspense>
     </main>
   )
