@@ -1,7 +1,11 @@
+export const dynamic = 'force-static'
+
 import { Suspense } from 'react'
 
+const endpoint = 'https://randomuser.me/api/'
+
 const fetchUser = async () => {
-  const response = await fetch(`https://randomuser.me/api/`)
+  const response = await fetch(endpoint)
   const data = await response.json()
   const random = data.results
 
@@ -9,7 +13,7 @@ const fetchUser = async () => {
 }
 
 const fetchRandomUser = async () => {
-  const response = await fetch(`https://randomuser.me/api/`, {
+  const response = await fetch(endpoint, {
     cache: 'no-cache',
   })
   const data = await response.json()
