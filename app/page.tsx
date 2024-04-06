@@ -1,4 +1,4 @@
-export const dynamic = 'force-static'
+export const dynamic = 'error'
 
 import ReloadButton from '@/components/ReloadButton'
 import { Suspense } from 'react'
