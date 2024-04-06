@@ -2,7 +2,7 @@ import ReloadButton from '@/components/ReloadButton'
 import { Suspense } from 'react'
 
 // Force the page to be statically generated
-export const dynamic = 'force-static'
+// export const dynamic = 'force-static'
 
 const fetchUser = async () => {
   const response = await fetch('https://randomuser.me/api/')
