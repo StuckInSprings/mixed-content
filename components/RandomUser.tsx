@@ -1,7 +1,3 @@
-'use server'
-
-import { Suspense } from 'react'
-
 const fetchRandomUser = async () => {
   const response = await fetch('https://randomuser.me/api/', {
     cache: 'no-cache',
@@ -14,13 +10,7 @@ const fetchRandomUser = async () => {
 
 const RandomUser = async () => {
   const randomResult = await fetchRandomUser()
-  return (
-    <p className='text-lg'>
-      <Suspense fallback={<div>Loading...</div>}>
-        {randomResult[0].name.first}{' '}
-      </Suspense>
-    </p>
-  )
+  return <p className='text-lg'>{randomResult[0].name.first} </p>
 }
 
 export default RandomUser

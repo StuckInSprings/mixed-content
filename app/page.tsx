@@ -1,7 +1,8 @@
-import RandomUser from '@/components/RandomUser'
 import ReloadButton from '@/components/ReloadButton'
+import { Suspense } from 'react'
 
-const endpoint = 'https://randomuser.me/api/'
+// Force the page to be statically generated
+export const dynamic = 'force-static'
 
 const fetchUser = async () => {
   const response = await fetch('https://randomuser.me/api/')
@@ -11,8 +12,19 @@ const fetchUser = async () => {
   return random
 }
 
+const fetchRandomUser = async () => {
+  const response = await fetch('https://randomuser.me/api/', {
+    cache: 'no-store',
+  })
+  const data = await response.json()
+  const random = data.results
+
+  return random
+}
+
 export default async function Home() {
   const staticResult = await fetchUser()
+  const randomResult = await fetchRandomUser()
 
   return (
     <main className='flex flex-col min-h-screen items-center justify-center p-24'>
@@ -23,8 +35,9 @@ export default async function Home() {
         </div>
         <div className='rounded border border-white p-2'>
           <h1 className='text-4xl font-bold'>Random User</h1>
-
-          <RandomUser />
+          <Suspense fallback={<div>Loading...</div>}>
+            <p className='text-lg'>{randomResult[0].name.first} </p>
+          </Suspense>
         </div>
       </div>
       <ReloadButton />
